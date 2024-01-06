@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fq1ptlcbs1dy"
-path="res://.godot/imported/animation_player_legs_walk.png-38cbdc8b6285073ea7abd520f4c98f72.ctex"
+uid="uid://cqet85mrdrr53"
+path="res://.godot/imported/base_tileset.png-2c545ead0a3912a1cf6bc14748623bd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player/animation_player_legs_walk.png"
-dest_files=["res://.godot/imported/animation_player_legs_walk.png-38cbdc8b6285073ea7abd520f4c98f72.ctex"]
+source_file="res://tilesets/base_tileset.png"
+dest_files=["res://.godot/imported/base_tileset.png-2c545ead0a3912a1cf6bc14748623bd1.ctex"]
 
 [params]
 

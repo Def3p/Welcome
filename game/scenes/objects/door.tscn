@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfdbfdjk76v58"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_iwwnd"]
+[ext_resource type="Texture2D" uid="uid://cy4rhlykjewjs" path="res://sprites/objects/door.png" id="2_ypu64"]
+[ext_resource type="Script" path="res://scripts/component/hitbox_component.gd" id="3_vgj1w"]
+[ext_resource type="Script" path="res://scripts/component/health_component.gd" id="4_amtkh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqok0"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3su7"]
+size = Vector2(32, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5cbf"]
+radius = 24.0208
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_iwwnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ypu64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tqok0")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("3_vgj1w")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_q3su7")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("4_amtkh")
+
+[node name="Interaction" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("CircleShape2D_f5cbf")
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="area_entered" from="Interaction" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="Interaction" to="." method="_on_interaction_area_exited"]

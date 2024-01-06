@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvvyth1w8kv7m"
-path="res://.godot/imported/animation_ak47_shoot.png-92a0f9b731cd458d27aaae38548bff00.ctex"
+uid="uid://dy5h76ykwb0on"
+path="res://.godot/imported/base_tileset2.png-3edbce0d244999be094152e7f782e176.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/weapons/ak47/animation_ak47_shoot.png"
-dest_files=["res://.godot/imported/animation_ak47_shoot.png-92a0f9b731cd458d27aaae38548bff00.ctex"]
+source_file="res://tilesets/base_tileset2.png"
+dest_files=["res://.godot/imported/base_tileset2.png-3edbce0d244999be094152e7f782e176.ctex"]
 
 [params]
 
