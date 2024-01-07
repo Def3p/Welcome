@@ -12,38 +12,46 @@ size = Vector2(30, 4)
 size = Vector2(32, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5cbf"]
-radius = 24.0208
+radius = 27.0
 
-[node name="Door" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 0
+[node name="Door" type="Node2D"]
 script = ExtResource("1_iwwnd")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Door_body" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 17
+
+[node name="Sprite2D" type="Sprite2D" parent="Door_body"]
 texture_filter = 1
+position = Vector2(16, 0)
 texture = ExtResource("2_ypu64")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_body"]
+position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_tqok0")
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HitboxComponent" type="Area2D" parent="Door_body" node_paths=PackedStringArray("health_component")]
+position = Vector2(16, 0)
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("3_vgj1w")
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_body/HitboxComponent"]
 shape = SubResource("RectangleShape2D_q3su7")
 
-[node name="HealthComponent" type="Node2D" parent="."]
+[node name="HealthComponent" type="Node2D" parent="Door_body"]
+position = Vector2(16, 0)
 script = ExtResource("4_amtkh")
 
-[node name="Interaction" type="Area2D" parent="."]
+[node name="Interaction" type="Area2D" parent="Door_body"]
+position = Vector2(16, 0)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_body/Interaction"]
 shape = SubResource("CircleShape2D_f5cbf")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
-[connection signal="area_entered" from="Interaction" to="." method="_on_interaction_area_entered"]
-[connection signal="area_exited" from="Interaction" to="." method="_on_interaction_area_exited"]
+[connection signal="area_entered" from="Door_body/HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="area_entered" from="Door_body/Interaction" to="." method="_on_interaction_area_entered"]
+[connection signal="area_exited" from="Door_body/Interaction" to="." method="_on_interaction_area_exited"]
