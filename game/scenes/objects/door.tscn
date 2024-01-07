@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfdbfdjk76v58"]
+[gd_scene load_steps=9 format=3 uid="uid://cfdbfdjk76v58"]
 
 [ext_resource type="Script" path="res://scripts/door.gd" id="1_iwwnd"]
 [ext_resource type="Texture2D" uid="uid://cy4rhlykjewjs" path="res://sprites/objects/door.png" id="2_ypu64"]
@@ -13,6 +13,9 @@ size = Vector2(32, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f5cbf"]
 radius = 27.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ifdlm"]
+polygon = PackedVector2Array(0, -2, 32, -2, 32, 2, 0, 2)
 
 [node name="Door" type="Node2D"]
 script = ExtResource("1_iwwnd")
@@ -51,6 +54,9 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door_body/Interaction"]
 shape = SubResource("CircleShape2D_f5cbf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Door_body"]
+occluder = SubResource("OccluderPolygon2D_ifdlm")
 
 [connection signal="area_entered" from="Door_body/HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
 [connection signal="area_entered" from="Door_body/Interaction" to="." method="_on_interaction_area_entered"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://lkvq3ouwhkew"]
+
+[ext_resource type="Script" path="res://scripts/turret.gd" id="1_gdahu"]
+[ext_resource type="Texture2D" uid="uid://bb1reimku7r1i" path="res://sprites/weapons/ak47/turret.png" id="2_12d2i"]
+[ext_resource type="Texture2D" uid="uid://bt83lrgscoky1" path="res://sprites/weapons/ak47/ak47_default.png" id="3_8w3ri"]
+[ext_resource type="Texture2D" uid="uid://bv26cu2wpqng8" path="res://sprites/weapons/ak47/laser.png" id="4_48p6j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlnjh"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brnrm"]
+radius = 143.0
+
+[node name="turret" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_gdahu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tlnjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
+texture = ExtResource("2_12d2i")
+
+[node name="Visible" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visible"]
+shape = SubResource("CircleShape2D_brnrm")
+
+[node name="Tower" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tower"]
+light_mask = 0
+position = Vector2(0.5, 0)
+texture = ExtResource("3_8w3ri")
+
+[node name="PointLight2D" type="PointLight2D" parent="Tower"]
+rotation = -1.5708
+scale = Vector2(2.82422, 1)
+color = Color(1, 0.160784, 0.160784, 1)
+energy = 0.6
+texture = ExtResource("4_48p6j")
+
+[node name="RayCast2D" type="RayCast2D" parent="Tower"]
+target_position = Vector2(0, -150)
+
+[node name="Angry" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="Visible" to="." method="_on_visible_area_entered"]
+[connection signal="area_exited" from="Visible" to="." method="_on_visible_area_exited"]
+[connection signal="timeout" from="Angry" to="." method="_on_angry_timeout"]

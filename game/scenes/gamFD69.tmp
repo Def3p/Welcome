@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0t4513vcou1p"]
+[gd_scene load_steps=8 format=3 uid="uid://c0t4513vcou1p"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_muuc4"]
 [ext_resource type="PackedScene" uid="uid://boyodaek0gupt" path="res://scenes/world.tscn" id="1_whewr"]
 [ext_resource type="PackedScene" uid="uid://diq5w5pke8057" path="res://scenes/player.tscn" id="2_4ybo7"]
 [ext_resource type="PackedScene" uid="uid://t6h0kraj7be8" path="res://scenes/ui/pause_menu.tscn" id="3_gvwto"]
 [ext_resource type="PackedScene" uid="uid://vnta4fqmpbss" path="res://scenes/warden.tscn" id="5_y6atw"]
-[ext_resource type="PackedScene" uid="uid://bwdfuwib2k2eq" path="res://scenes/ui/map.tscn" id="6_3scax"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_noory"]
 bg_color = Color(0.0941176, 0.0941176, 0.0941176, 1)
@@ -23,27 +22,12 @@ scale = Vector2(2, 2)
 [node name="Player" parent="." instance=ExtResource("2_4ybo7")]
 position = Vector2(120, 118)
 
-[node name="warden" parent="." instance=ExtResource("5_y6atw")]
-position = Vector2(-225, 197)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-constrain_avoidance = true
-
-[node name="PauseMenu" parent="." instance=ExtResource("3_gvwto")]
-visible = false
-top_level = true
-light_mask = 0
-offset_left = -35.0
-offset_top = 51.0
-offset_right = -35.0
-offset_bottom = 51.0
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 light_mask = 0
 offset_left = 95.0
 offset_top = 84.0
-offset_right = 235.0
-offset_bottom = 98.0
+offset_right = 145.0
+offset_bottom = 90.0
 size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_styles/background = SubResource("StyleBoxFlat_noory")
@@ -51,5 +35,16 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0hx5h")
 value = 60.0
 show_percentage = false
 
-[node name="map" parent="." instance=ExtResource("6_3scax")]
-scale = Vector2(0.4, 0.4)
+[node name="PauseMenu" parent="." instance=ExtResource("3_gvwto")]
+visible = false
+light_mask = 0
+offset_left = -35.0
+offset_top = 51.0
+offset_right = -35.0
+offset_bottom = 51.0
+
+[node name="warden" parent="." instance=ExtResource("5_y6atw")]
+position = Vector2(-225, 197)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+constrain_avoidance = true

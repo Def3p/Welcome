@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cou482uc36m04"]
+
+[ext_resource type="Texture2D" uid="uid://bwstljnbsyigp" path="res://sprites/plan.png" id="1_1bfeu"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_10oy7"]
+polygon = PackedVector2Array(661, 908, 1192, 929, 1211, 248, 678, 229)
+
+[node name="map" type="Control"]
+light_mask = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 80.0
+offset_right = 1364.0
+offset_bottom = 980.0
+texture = ExtResource("1_1bfeu")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="TextureRect"]
+position = Vector2(-464, -80)
+occluder = SubResource("OccluderPolygon2D_10oy7")

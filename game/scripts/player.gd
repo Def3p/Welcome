@@ -12,6 +12,11 @@ var state: String = "default"
 @onready var collision = $CollisionShape2D1
 
 func _physics_process(delta):
+	if Engine.time_scale == 0:
+		return
+	
+	Global.health_bar.value = $HealthComponent.health
+	
 	if Input.is_action_just_pressed("kick"):
 		state = "kick"
 		velocity = Vector2.ZERO
